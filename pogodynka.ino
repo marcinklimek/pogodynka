@@ -215,6 +215,8 @@ void parse_wind_dir()
     Serial.print("Wind dir;3;");
     
     unsigned int dir = ((nibbles[3] & 0b1000)>>4) | (nibbles[4]<<5) | (nibbles[5]<<9);
+    //fix the value of wind direction.Without the shift is a wrong one
+    dir=dir>>4;
     Serial.print(dir);
     Serial.print(" ");
     byte gust = nibbles[6] + (nibbles[7]<<4);
